@@ -4,9 +4,10 @@ You must implement a solution with a linear runtime complexity and use only cons
 #include <iostream>
 #include <vector>
 #include <map>
+#include <algorithm>
 using namespace std;
 
-class Solution
+/* class Solution
 {
 public:
     void singleNumber(vector<int> &nums)
@@ -31,8 +32,52 @@ public:
             }
         }
     }
-};
+}; */
 
+// this solition is not good, because it use extra space
+// the reason is that we need to store the number in the map, but the map is not a good choice, because it will use extra space
+// the map is a good choice when the number is not too large, but the number is too large, the map will use too much space
+// Time complexity: O(n)
+// Space complexity: O(n)
+
+//--------------let use sort method to solve this problem------------
+/* class Solution
+{
+public:
+    void singleNumber(vector<int> &nums)
+    {
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (i % 2 == 0)
+            {
+                if (nums[i] != nums[i + 1])
+                {
+                    cout << nums[i] << endl;
+                    return;
+                }
+            }
+        }
+    }
+}; */
+// Time complexity: O(nlogn)
+// Space complexity: O(1)
+// sort method is a good choice, but the time complexity is not good, and not linear
+
+//--------------let use bit manipulation to solve this problem------------
+class Solution
+{
+public:
+    void singleNumber(vector<int> &nums)
+    {
+        int res = 0;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            res ^= nums[i];
+        }
+        cout << res << endl;
+    }
+};
 int main()
 {
     Solution s;
