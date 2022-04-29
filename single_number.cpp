@@ -78,6 +78,9 @@ public:
         cout << res << endl;
     }
 };
+// Time complexity: O(n)
+// Space complexity: O(1)
+// bit manipulation is a good choice
 int main()
 {
     Solution s;
