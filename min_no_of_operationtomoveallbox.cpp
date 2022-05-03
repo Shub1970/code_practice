@@ -7,7 +7,7 @@ Return an array answer of size n, where answer[i] is the minimum number of opera
 
 Each answer[i] is calculated considering the initial state of the boxes.
 
- 
+
 
 Example 1:
 
@@ -22,3 +22,40 @@ Example 2:
 Input: boxes = "001011"
 Output: [11,8,5,4,3,4]
 */
+
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+using namespace std;
+
+class Solution
+{
+public:
+    vector<int> minOperations(string boxes)
+    {
+        const int siz = boxes.size();
+        vector<int> answer(siz, 0);
+        for (int i = 0; i < siz; i++)
+        {
+            for (int j = 0; j < siz; j++)
+            {
+                if (boxes[j] == '1')
+                {
+                    answer[i] = answer[i] + abs(i - j);
+                }
+            }
+        }
+        return answer;
+    }
+};
+
+int main()
+{
+    string st = "001011";
+    Solution s;
+    vector<int> ans = s.minOperations(st);
+    for (auto x : ans)
+    {
+        cout << x << " ";
+    }
+}
