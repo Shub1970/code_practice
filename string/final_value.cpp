@@ -17,7 +17,7 @@ Initially, the value of X is 0.
 
 Given an array of strings operations containing a list of operations, return the final value of X after performing all the operations.
 
- 
+
 
 Example 1:
 
@@ -29,3 +29,36 @@ Initially, X = 0.
 X++: X is incremented by 1, X = -1 + 1 =  0.
 X++: X is incremented by 1, X =  0 + 1 =  1.
 */
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+class Solution
+{
+public:
+    int finalValue(vector<string> &operations)
+    {
+        int x = 0;
+        for (auto op : operations)
+        {
+            if (op[1] == '-')
+            {
+                x--;
+            }
+            else
+            {
+                x++;
+            }
+        }
+        return x;
+    }
+};
+
+int main()
+{
+    vector<string> ops = {"++X", "++X", "X++"};
+    Solution s;
+    cout << s.finalValue(ops) << endl;
+    return 0;
+}
