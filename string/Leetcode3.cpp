@@ -2,7 +2,7 @@
 #include <string>
 #include <math.h>
 using namespace std;
-class Solution
+/* class Solution
 {
 public:
     int minTimeToType(string word)
@@ -21,6 +21,23 @@ public:
             initial_state = c;
         }
         return seconds + word.size();
+    }
+}; */
+//---------------------------------------------------------------------------------------------------------------------
+// better solution
+class Solution
+{
+public:
+    int minTimeToType(string word)
+    {
+        int initial_state = 'a';
+        int seconds = word.size();
+        for (char c : word)
+        {
+            seconds += min(abs(c - initial_state), 26 - abs(c - initial_state));
+            initial_state = c;
+        }
+        return seconds;
     }
 };
 
