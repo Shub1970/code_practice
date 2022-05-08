@@ -41,6 +41,15 @@ public:
                 }
                 range.push_back(make_pair(first, last));
             }
+            else
+            {
+                if (i == S.size() - 1)
+                {
+                    first = last;
+                    last = 10000;
+                    range.push_back(make_pair(first, last));
+                }
+            }
         }
         for (int i = 0; i < S.size(); i++)
         {
@@ -53,7 +62,7 @@ public:
 int main()
 {
     Solution s;
-    string S = "aaab";
+    string S = "aaba";
     char C = 'b';
     vector<int> ans = s.shortestToChar(S, C);
     for (auto i : ans)
