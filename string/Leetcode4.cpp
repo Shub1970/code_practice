@@ -5,11 +5,12 @@ class Solution
 public:
     string removeDuplicates(string S)
     {
+        S.push_back('#');
         char reserve = S[0];
         int i = 1;
         while (true)
         {
-            if (i == S.size() - 1)
+            if (reserve == '#')
             {
                 break;
             }
@@ -25,6 +26,7 @@ public:
                 reserve = S[0];
             }
         }
+        S.pop_back();
         return S;
     }
 };
@@ -32,7 +34,7 @@ public:
 int main()
 {
     Solution s;
-    string S = "azxxzy";
+    string S = "aaaabbcbdd";
     cout << s.removeDuplicates(S) << endl;
     return 0;
 }
