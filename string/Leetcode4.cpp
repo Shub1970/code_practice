@@ -10,7 +10,8 @@ public:
         int i = 1;
         while (true)
         {
-            if (reserve == '#')
+            if (reserve == '#' && i == S.size())
+                break;
             {
                 break;
             }
