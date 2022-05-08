@@ -31,33 +31,20 @@ class Solution
 public:
     int mostWordsFound(vector<string> &sentences)
     {
-        int max = 0;
+        int max_word = 0;
         for (string subsentences : sentences)
         {
-            int submax = 0;
-            int subsubmax = 0;
+            int sub_max_word = 0;
             for (size_t i = 0; i < subsentences.size(); i++)
             {
-                if (subsentences[i] != ' ')
+                if (subsentences[i] == ' ')
                 {
-                    ++subsubmax;
-                }
-                else
-                {
-                    if (subsubmax > submax)
-                    {
-                        submax = subsubmax;
-                    }
-                    subsubmax = 0;
-                    continue;
+                    sub_max_word++;
                 }
             }
-            if (submax > max)
-            {
-                max = submax;
-            }
+            max_word = max(max_word, sub_max_word + 1);
         }
-        return max;
+        return max_word;
     }
 };
 
@@ -66,7 +53,7 @@ int main()
     Solution s;
     vector<string> sentences;
     sentences.push_back("ajidfjakjfi ijijoib ojiojijojioj");
-    sentences.push_back("ajidfjakjfijijfi ijijoib ojiojijojioj kafjdiawejf");
+    sentences.push_back("ajidfjakjfijijfi jfikadjfij ijijoib ojiojijojioj kafjdiawejf");
     int max = s.mostWordsFound(sentences);
     cout << max << endl;
 }
