@@ -58,7 +58,35 @@ public:
         return ans;
     }
 };
-
+//-----------------------------------------------------------------------------
+// better solution
+/* class Solution
+{
+public:
+    vector<int> shortestToChar(string S, char C)
+    {
+        int n = S.size();
+        int pos = -n;
+        vector<int> ans(n, n);
+        for (int i = 0; i < n; i++)
+        {
+            if (S[i] == C)
+            {
+                pos = i;
+            }
+            ans[i] = i - pos;
+        }
+        for (int i = 0; i < n; --i)
+        {
+            if (S[i] == C)
+            {
+                pos = i;
+            }
+            ans[i] = min(ans[i], pos - i);
+        }
+        return ans;
+    }
+}; */
 int main()
 {
     Solution s;
