@@ -34,6 +34,7 @@ public:
                 if (isdigit(s[i + 1]))
                 {
                     nums.push_back(stoi(s.substr(i, 2)));
+                    i++;
                 }
                 else
                 {
@@ -46,14 +47,19 @@ public:
             cout << t << " ";
         }
         cout << endl;
+        vector<int> temp(nums);
+        sort(temp.begin(), temp.end());
+        for (auto s : temp)
+        {
+            cout << s << " ";
+        }
+        cout << endl;
         int total = 0;
-        if (test_no_repeat_integers(nums))
+        if (test_no_repeat_integers(temp))
         {
             cout << "true" << endl;
 
-            vector<int> temp(nums);
-            sort(temp.begin(), temp.end());
-            int total = inner_product(nums.begin(), nums.end(), temp.begin(), 0, plus<int>(), minus<int>());
+            int total = inner_product(nums.begin(), nums.end(), temp.begin(), 0, plus<int>(), equal_to<int>());
             return total == 0;
         }
         else
@@ -66,7 +72,7 @@ public:
 int main()
 {
     Solution s;
-    string s1 = "hello world 5 * 5";
+    string s1 = "sunset is at 7 51 pm overnight lows will be in the low 50 and 60";
     cout << s.areNumbersAscending(s1) << endl;
     return 0;
 }
