@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 using namespace std;
-class Solution
+/* class Solution
 {
 public:
     int convertTime(string current, string correct)
@@ -16,7 +16,7 @@ public:
         int minute_diff = minute_correct - minute;
         int hour_diff = hour_correct - hour;
         int level = 0;
-        if (minute_diff > 0)
+        if (minute_diff >= 0)
         {
             level = minute_diff;
         }
@@ -64,12 +64,32 @@ public:
         }
         return operation + hour_diff;
     }
+}; */
+// not able to solve
+class Solution
+{
+    int getTime(string &s)
+    {
+        return stoi(s.substr(0, 2)) * 60 + stoi(s.substr(3));
+    }
+
+public:
+    int convertTime(string current, string correct)
+    {
+        int diff = getTime(current) - getTime(correct), ops[4]{60, 15, 5, 1}, ans = 0;
+        for (int op : ops)
+        {
+            ans += diff / op;
+            diff %= op;
+        }
+        return ans;
+    }
 };
 int main()
 {
     Solution s;
-    string current = "02:30";
-    string correct = "04:35";
+    string current = "06:50";
+    string correct = "12:47";
     cout << s.convertTime(current, correct) << endl;
     return 0;
 }
