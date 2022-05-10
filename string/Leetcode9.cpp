@@ -10,25 +10,26 @@ public:
     int minOperations(vector<string> &logs)
     {
         int main_distance = 0;
-        int prev_file_no = 0;
+        string prev_file = "";
         for (auto str : logs)
         {
             if (str == "../")
             {
                 main_distance--;
             }
-            else if (str[0] == 'd')
+            else if (str == "./")
+                continue;
+            else
             {
-                int current_file_no = stoi(str.substr(1, str.size() - 1));
-                if (prev_file_no != current_file_no)
+                string current_file = str;
+                if (prev_file != current_file)
                 {
                     main_distance++;
-                    prev_file_no = current_file_no;
-                    ;
+                    prev_file = current_file;
                 }
                 else
                 {
-                    prev_file_no = current_file_no;
+                    prev_file = current_file;
                 }
             }
         }
@@ -38,7 +39,7 @@ public:
 int main()
 {
     Solution s;
-    vector<string> logs = {"d1/", "../", "../", "../"};
+    vector<string> logs = {"./", "ho3/", "t18/"};
     cout << s.minOperations(logs) << endl;
     return 0;
 }
