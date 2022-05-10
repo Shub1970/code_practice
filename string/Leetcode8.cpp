@@ -60,7 +60,8 @@ public:
             cout << "true" << endl;
 
             int total = inner_product(nums.begin(), nums.end(), temp.begin(), 0, plus<int>(), equal_to<int>());
-            return total == 0;
+            cout << "total:" << total << endl;
+            return total == nums.size();
         }
         else
         {
@@ -72,7 +73,7 @@ public:
 int main()
 {
     Solution s;
-    string s1 = "sunset is at 7 51 pm overnight lows will be in the low 50 and 60";
+    string s1 = "1 box has 3 blue 4 red 6 green and 12 yellow balls";
     cout << s.areNumbersAscending(s1) << endl;
     return 0;
 }
