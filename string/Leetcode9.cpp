@@ -15,7 +15,12 @@ public:
         {
             if (str == "../")
             {
-                main_distance--;
+                if (main_distance == 0)
+                    continue;
+                else
+                {
+                    main_distance--;
+                }
             }
             else if (str == "./")
                 continue;
@@ -39,7 +44,7 @@ public:
 int main()
 {
     Solution s;
-    vector<string> logs = {"./", "ho3/", "t18/"};
+    vector<string> logs = {"./", "wz4", "../", "mj2/", "../", "ik0", "i17/"};
     cout << s.minOperations(logs) << endl;
     return 0;
 }
