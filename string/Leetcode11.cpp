@@ -8,7 +8,7 @@ public:
     bool makeEqual(vector<string> &words)
     {
         int length = words.size();
-        vector<int> time(length, 0);
+        vector<int> time(26, 0);
         for (string st : words)
         {
             for (char ch : st)
@@ -16,13 +16,21 @@ public:
                 time[ch - 'a']++;
             }
         }
-        int common_time = time[0];
+        int common_time = length;
         bool ans = true;
         for (int T : time)
         {
-            if (T != common_time)
-                ans = false;
+            if (T != 0)
+            {
+                if (T != common_time)
+                    ans = false;
+            }
         }
+        for (auto st : time)
+        {
+            cout << st << " ";
+        }
+        cout << endl;
         return ans;
     }
 };
