@@ -15,17 +15,23 @@ public:
         {
             if (str == "../")
             {
+                cout << "str:" << str;
                 if (main_distance == 0)
-                    continue;
+                {
+                }
                 else
                 {
+                    prev_file = "../";
                     main_distance--;
                 }
             }
             else if (str == "./")
-                continue;
+            {
+                cout << "str:" << str;
+            }
             else
             {
+                cout << "str:" << str;
                 string current_file = str;
                 if (prev_file != current_file)
                 {
@@ -37,6 +43,7 @@ public:
                     prev_file = current_file;
                 }
             }
+            cout << "main_distance:" << main_distance << endl;
         }
         return (main_distance > 0) ? main_distance : 0;
     }
@@ -44,7 +51,7 @@ public:
 int main()
 {
     Solution s;
-    vector<string> logs = {"./", "wz4", "../", "mj2/", "../", "ik0", "i17/"};
+    vector<string> logs = {"./", "c1/", "pj5/", "e5/", "y6/", "../", "u4/", "a5/", "../", "nq5/", "../", "m2/", "w0/", "./", "./", "uf5/", "z8/", "../", "z8/", "r7/", "ez6/", "u4/", "it2/", "./", "../", "./", "tb9/", "o4/"};
     cout << s.minOperations(logs) << endl;
     return 0;
 }
