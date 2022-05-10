@@ -22,8 +22,10 @@ public:
         {
             if (T != 0)
             {
-                if (T != common_time)
+                if (T % common_time)
+                {
                     ans = false;
+                }
             }
         }
         for (auto st : time)
@@ -34,7 +36,24 @@ public:
         return ans;
     }
 };
-
+// cool way
+class Solution
+{
+public:
+    bool makeEqual(vector<string> &words)
+    {
+        int cnt[26] = {0};
+        for (auto w : words)
+        {
+            for (auto c : w)
+            {
+                cnt[c - 'a']++;
+            }
+        }
+        return all_of(cnt, cnt + 26, [](int x)
+                      { return x % words.size() == 0; });
+    }
+};
 int main()
 {
     Solution s;
