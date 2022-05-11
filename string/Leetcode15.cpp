@@ -1,6 +1,7 @@
 // minimum-moves-to-convert-string
 #include <iostream>
 #include <string>
+#include <algorithm>
 using namespace std;
 int solve(string &s)
 {
@@ -21,24 +22,19 @@ public:
     int minimumMoves(string s)
     {
         int operation = 0;
-        if (!s.size() % 3)
+        string::iterator it = s.begin();
+        while (it < s.end())
         {
-            operation = solve(s);
-            cout << "0" << s << endl;
+            string::iterator X_position;
+            X_position = find(it, s.end(), 'X');
+            it = X_position;
+            if (X_position != s.end())
+            {
+                operation++;
+                *X_position = *(X_position + 1) = *(X_position + 2) = 'O';
+            }
         }
-        else if (s.size() % 3 == 1)
-        {
-            s.push_back('O');
-            s.push_back('O');
-            cout << "1" << s << endl;
-            operation = solve(s);
-        }
-        else if (s.size() % 3 == 2)
-        {
-            s.push_back('O');
-            cout << "2" << s << endl;
-            operation = solve(s);
-        }
+
         return operation;
     }
 };
@@ -46,6 +42,6 @@ public:
 int main()
 {
     Solution S;
-    string s = "XXOOXXX";
+    string s = "OXOX";
     cout << S.minimumMoves(s) << endl;
 }
