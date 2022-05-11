@@ -31,9 +31,9 @@ public:
     int maxScore(string s)
     {
         int max = 0;
-        for (string::iterator it = s.begin(); it != s.end(); it++)
+        for (string::iterator it = s.begin(); it != s.end() - 1; it++)
         {
-            int left = accumulate(s.begin(), it + 1, 0, left_side);
+            int left = accumulate(s.begin(), it, 0, left_side);
             int right = accumulate(it + 1, s.end(), 0, right_side);
             cout << left << " " << right << endl;
             if (max < left + right)
