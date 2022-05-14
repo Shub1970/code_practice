@@ -1,47 +1,27 @@
-// minimum-moves-to-convert-string
 #include <iostream>
 #include <string>
-#include <algorithm>
 using namespace std;
-int solve(string &s)
-{
-    int operations = 0;
-    for (int i = 2; i < s.size(); i = i + 3)
-    {
-        if (s[i - 2] == 'X' || s[i - 1] == 'X' || s[i] == 'X')
-        {
-            operations++;
-        }
-    }
-    return operations;
-}
-
-class Solution
+class Solutino
 {
 public:
-    int minimumMoves(string s)
+    string thousandSeparator(int n)
     {
-        int operation = 0;
-        string::iterator it = s.begin();
-        while (it < s.end())
+        string st = to_string(n);
+        int len = st.length();
+        string res = "";
+        for (int i = 0; i < len; i++)
         {
-            string::iterator X_position;
-            X_position = find(it, s.end(), 'X');
-            it = X_position;
-            if (X_position != s.end())
+            if (i > 0 && (st.size() - i) % 3 == 0)
             {
-                operation++;
-                *X_position = *(X_position + 1) = *(X_position + 2) = 'O';
+                res = ;
             }
+            res += st[i];
         }
-
-        return operation;
     }
 };
-
 int main()
 {
-    Solution S;
-    string s = "OXOX";
-    cout << S.minimumMoves(s) << endl;
+    Solutino s;
+    cout << s.thousandSeparator(12334562) << endl;
+    return 0;
 }
