@@ -36,7 +36,7 @@ public:
     {
         for (int i = 0; i < s.size(); i++)
         {
-            order[s[i]] = i;
+            order[s[i]] = i; // still slower than compare1
         }
     }
     bool operator()(string s1, string s2)
@@ -50,6 +50,24 @@ public:
         }
         return s1.size() < s2.size();
     }
+};
+
+// better solutin
+bool isAlienSorted(vector<string> &words, string order)
+{
+    int mapping[26];
+    for (int i = 0; i < 26; i++)
+    {
+        mapping[order[i]] = i;
+    }
+    for (string &w : words)
+    {
+        for (char &c : w)
+        {
+            c = mapping[c - 'a'];
+        }
+    }
+    return is_sorted(words.begin(), words.end());
 };
 
 class Solution
