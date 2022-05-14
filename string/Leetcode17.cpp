@@ -29,7 +29,7 @@ public:
 int main()
 {
     Solution s;
-    string s1 = "daf345ie320sf932ef";
+    string s1 = ""kwvfiprlqymptsmmrfd199114918818919414"f";
     cout << s.secondHigest(s1) << endl;
     return 0;
 }
