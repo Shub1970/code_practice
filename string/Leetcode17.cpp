@@ -15,8 +15,13 @@ public:
                 int_set.insert(s[i] - '0');
             }
         }
+        for (auto i : int_set)
+        {
+            cout << i << " ";
+        }
+        cout << endl;
         auto it = int_set.rbegin();
-        if (int_set.size() < 1)
+        if (int_set.size() < 2)
         {
             return -1;
         }
@@ -29,7 +34,7 @@ public:
 int main()
 {
     Solution s;
-    string s1 = "daf345ie320sf932ef";
+    string s1 = "abc1111";
     cout << s.secondHigest(s1) << endl;
     return 0;
 }
