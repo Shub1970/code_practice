@@ -2,14 +2,15 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <map>
 using namespace std;
 
-class compare
+class compare1
 {
     string reserve_str;
 
 public:
-    compare(string s) : reserve_str(s){};
+    compare1(string s) : reserve_str(s){};
     bool operator()(string s1, string s2)
     {
         int i = 0;
@@ -24,6 +25,32 @@ public:
         return s1.size() < s2.size();
     }
 };
+// find will take o(n) time
+// better solution will be to use map to store the order of the characters
+class compare2
+{
+    map<char, int> order;
+
+public:
+    compare2(string s)
+    {
+        for (int i = 0; i < s.size(); i++)
+        {
+            order[s[i]] = i;
+        }
+    }
+    bool operator()(string s1, string s2)
+    {
+        for (int i = 0; i < s1.size(); i++)
+        {
+            if (order[s1[i]] != order[s2[i]])
+            {
+                return order[s1[i]] < order[s2[i]];
+            }
+        }
+        return s1.size() < s2.size();
+    }
+};
 
 class Solution
 {
@@ -31,7 +58,7 @@ public:
     bool isAlienSorted(vector<string> &words, string order)
     {
         vector<string> sorted_words(words);
-        compare cmp(order);
+        compare2 cmp(order);
         sort(sorted_words.begin(), sorted_words.end(), cmp);
         for (int i = 0; i < sorted_words.size(); i++)
         {
