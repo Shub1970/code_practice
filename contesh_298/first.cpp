@@ -4,25 +4,31 @@
 #include <map>
 #include <algorithm>
 using namespace std;
+bool comp(string s1, string s2)
+{
+    sort(s1.begin(), s1.end());
+    sort(s2.begin(), s2.end());
+    return s1 == s2;
+}
 
 class Solution
 {
 public:
     vector<string> removeAnagrams(vector<string> &strs)
     {
-        vector<string> res;
-        map<string, int> m;
-        for (int i = 0; i < strs.size(); i++)
+        int len = strs.size();
+        int i = 1;
+        while (i < len)
         {
-            string s = strs[i];
-            sort(s.begin(), s.end());
-            if (m.find(s) == m.end())
+            if (comp(strs[i - 1], strs[i]))
             {
-                m[s] = 1;
-                res.push_back(s);
+                strs.erase(strs.begin() + i);
+                len--;
             }
+            else
+                i++;
         }
-        return res;
+        return strs;
     }
 };
 int main()
@@ -30,9 +36,8 @@ int main()
     Solution s;
     vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
     vector<string> res = s.removeAnagrams(strs);
-    for (int i = 0; i < res.size(); i++)
+    for (auto i : res)
     {
-        cout << res[i] << endl;
+        cout << i << endl;
     }
-    return 0;
 }
