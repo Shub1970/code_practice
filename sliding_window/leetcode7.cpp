@@ -5,18 +5,10 @@ using namespace std;
 class Solution
 {
 public:
-    bool map_value_check(unordered_map<int, int> &nums)
-    {
-        for (auto mp : nums)
-        {
-            if (mp.second > 1)
-                return true;
-        }
-        return false;
-    }
+
     int maximumUniqueSubarray(vector<int> &nums)
     {
-        int max_sum = INT_MIN;
+        int max_sum = 0;
         int temp_max = 0;
         int first = 0;
         unordered_map<int, int> mp;
@@ -24,7 +16,7 @@ public:
         {
             mp[i]++;
             max_sum = max(max_sum, temp_max);
-            bool test = map_value_check(mp);
+            bool test = [&mp]()->bool{for(auto m:mp){if(m.second>1)return true;}return false;}();
             while (test)
             { // start shrinking
                 temp_max -= nums[first];
