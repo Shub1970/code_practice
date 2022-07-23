@@ -20,3 +20,20 @@ public:
         return (firstmax - 1) * (secondmax - 1);
     }
 };
+
+// better solution
+int maxProduct(vector<int> &nums)
+{
+    auto m1{0}, m2{0};
+    for (auto n : nums)
+    {
+        if (n > m1)
+        {
+            m2 = [&]()
+            {int temp=m1;m1=n;return temp; }();
+        }
+        else
+            m2 = max(m2, n);
+    }
+    return (m1 - 1) * (m2 - 1);
+}
