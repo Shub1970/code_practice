@@ -56,7 +56,7 @@ public:
                 tem += (ch - '0');
             mp[tem].push(x);
         }
-        int max = INT32_MIN;
+        int max = -1;
         for (auto m : mp)
         {
             if (m.second.size() > 1)
