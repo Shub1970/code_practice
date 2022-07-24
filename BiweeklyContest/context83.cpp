@@ -81,7 +81,7 @@ using namespace std;
 
 class NumberContainers
 {
-    unordered_map<int, set<int>> mp;
+    unordered_map<int, int> mp;
 
 public:
     NumberContainers()
@@ -89,15 +89,15 @@ public:
     }
     void change(int index, int number)
     {
-        mp[number].insert(index);
+        mp[index] = number;
     }
     int find(int number)
     {
-        if (mp.count(number))
+        for (auto x : mp)
         {
-            return *(mp[number].begin());
+            if (x.second == number)
+                return x.first;
         }
-        else
-            return -1;
+        return -1;
     }
 };
