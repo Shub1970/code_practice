@@ -27,6 +27,7 @@ public:
         return no_of_chose;
     }
 };
+// time complexity:O(N)
 
 int main()
 {
