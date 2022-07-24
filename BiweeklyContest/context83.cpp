@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <map>
 #include <stack>
 #include <set>
 using namespace std;
@@ -81,7 +82,7 @@ using namespace std;
 
 class NumberContainers
 {
-    unordered_map<int, int> mp;
+    map<int, int> mp;
 
 public:
     NumberContainers()
@@ -95,9 +96,35 @@ public:
     {
         for (auto x : mp)
         {
-            if (x.second == number)
+            if (x.second == number) // this is going to give TLE if the input is big
                 return x.first;
         }
         return -1;
+    }
+};
+
+// better solution
+
+class NumberContainers
+{
+    unordered_map<int, int> ind_num;
+    unordered_map<int, set<int>> num_inds;
+
+public:
+    NumberContainers()
+    {
+    }
+    void change(int index, int number)
+    {
+        auto it = ind_num.find(index);
+        if (it != ind_num.end())
+            num_inds[it->second].erase(index);
+        ind_num[index] = number;
+        num_inds[number].insert(index);
+    }
+    int find(int number)
+    {
+        auto it = num_inds.find(number);
+        return it == num_inds.end() || it->second.empty() ? -1 : *begin(it->second); // this is better because complexity is O(1);
     }
 };
