@@ -62,7 +62,7 @@ public:
 
 int main()
 {
-    vector<int> nums{24, 5, 4, 2, 2, 2, 2, 2, 2, 2, 54, 32, 15, 124, 3224, 125, 4, 54, 45, 54, 54, 54, 54, 54};
+    vector<int> nums{1, 2, 2, 5, 3};
     Solution obj;
     vector<int> ans = obj.targetIndices(nums, 54);
     for (int i(0); i < nums.size(); i++)
