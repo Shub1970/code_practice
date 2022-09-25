@@ -45,13 +45,7 @@ public:
         for (auto word : words)
         {
             vector<int> tem_patt = pattern_creater(word);
-            bool com_equal{true};
-            for (int i{0}; i < patt.size(); i++)
-            {
-                if (patt[i] != tem_patt[i])
-                    com_equal = false;
-            }
-            if (com_equal)
+            if (comp(patt, tem_patt))
                 result.push_back(word);
         }
         return result;
