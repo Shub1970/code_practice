@@ -10,10 +10,10 @@ class Solution
 {
 
 public:
-    bool comp(vector<int> a, vector<int> b)
+    bool comp(vector<int> &a, vector<int> &b)
     {
         bool res{true};
-        for (int i{0}; i < a.size(); i++)
+        for (int i{0}; i < a.size() && a.size() == b.size(); i++)
         {
             if (a[i] != b[i])
                 res = false;
