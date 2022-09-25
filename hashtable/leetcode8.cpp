@@ -13,10 +13,17 @@ public:
     bool comp(vector<int> &a, vector<int> &b)
     {
         bool res{true};
-        for (int i{0}; i < a.size() && a.size() == b.size(); i++)
+        if (a.size() == b.size())
         {
-            if (a[i] != b[i])
-                res = false;
+            for (int i{0}; i < a.size(); i++)
+            {
+                if (a[i] != b[i])
+                    res = false;
+            }
+        }
+        else
+        {
+            res = false;
         }
         return res;
     }
@@ -54,7 +61,7 @@ public:
 };
 int main()
 {
-    vector<string> words = {"a", "b", "c"};
+    vector<string> words = {"a", "b", "c", "fidoj", "ijfeo"};
     string pattern = "a";
     Solution obj;
     vector<string> res = obj.findAndReplacePattern(words, pattern);
