@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <map>
 #include <vector>
+#include <utility>
 using namespace std;
 bool comp(vector<int> a, vector<int> b)
 {
@@ -15,37 +16,42 @@ bool comp(vector<int> a, vector<int> b)
     }
     return res;
 }
+vector<int> pattern_creater(string pattern)
+{
+    vector<int> patt;
+    char initial_stage{pattern[0]};
+    int val{0};
+    for (auto x : pattern)
+    {
+        if (initial_stage == x)
+            val++;
+        else
+        {
+            patt.push_back(val);
+            initial_stage = x;
+            val = 1;
+        }
+    }
+    patt.push_back(val);
+    return patt;
+}
 class Solution
 {
 public:
     vector<string> findAndReplacePattern(vector<string> &words, string pattern)
     {
-        map<char, int> mp;
-        for (auto p : pattern)
-            mp[p]++;
-        vector<int> patt;
-        for (auto x : mp)
-        {
-            patt.push_back(x.second);
-        }
-        cout << "pattern";
-        for (auto x : patt)
-            cout << x << "-";
+        vector<int> patt = pattern_creater(pattern);
         vector<string> result;
         for (auto word : words)
         {
-            vector<int> temp_patt;
-            map<char, int> mp;
-            for (auto w : word)
-                mp[w]++;
-            for (auto x : mp)
+            vector<int> tem_patt = pattern_creater(word);
+            bool com_equal{true};
+            for (int i{0}; i < patt.size(); i++)
             {
-                temp_patt.push_back(x.second);
+                if (patt[i] != tem_patt[i])
+                    com_equal = false;
             }
-            cout << "\n";
-            for (auto x : temp_patt)
-                cout << x << "-";
-            if (comp(patt, temp_patt))
+            if (com_equal)
                 result.push_back(word);
         }
         return result;
@@ -57,8 +63,8 @@ int main()
     string pattern = "abb";
     Solution obj;
     vector<string> res = obj.findAndReplacePattern(words, pattern);
-    // for (auto st : res)
-    // {
-    //     cout << st << "\n";
-    // }
+    for (auto st : res)
+    {
+        cout << st << "\n";
+    }
 }
