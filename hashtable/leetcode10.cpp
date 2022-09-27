@@ -32,6 +32,7 @@ public:
         return result;
     }
 };
+// better solution, use heap
 int main()
 {
     vector<int> nums{1, 1, 1, 2, 2, 3};
