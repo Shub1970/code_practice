@@ -1,7 +1,8 @@
 // https://leetcode.com/problems/top-k-frequent-elements/
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
+#include <algorithm>
 using namespace std;
 class Solution
 {
@@ -9,23 +10,33 @@ public:
     vector<vector<string>> groupAnagrams(vector<string> &strs)
     {
         vector<string> copy_string(strs);
-        for (int i{0}; i < strs.size(); i++)
+        for (auto &sub_string : copy_string)
         {
-            strs[i] = sort(strs[i].begin(), strs[i].end());
+            sort(sub_string.begin(), sub_string.end());
         }
-        map<string, vector<int>> mp;
+        unordered_map<string, vector<string>> maap;
         for (int i{0}; i < strs.size(); i++)
         {
-            mp[copy_string[i]].push_back(i);
+            maap[copy_string[i]].push_back(strs[i]);
         }
         vector<vector<string>> result;
-        for (auto m : mp)
+        for (auto mp : maap)
         {
-            vector<int> temp;
-            for (auto x : m.second)
-                temp.push_back(strs[i]);
-            result.push_back(temp);
+            result.push_back(mp.second);
         }
         return result;
     }
 };
+int main()
+{
+    vector<string> strs{"eat", "tea", "tan", "ate", "nat", "bat"};
+    Solution obj;
+    vector<vector<string>> res = obj.groupAnagrams(strs);
+    for (auto r : res)
+    {
+        for (auto x : r)
+        {
+            cout << x << " ";
+        }
+    }
+}
