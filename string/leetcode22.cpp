@@ -73,28 +73,27 @@ public:
 // Runtime: 0 ms, faster than 100.00% of C++ online submissions for Score of Parentheses.
 // Memory Usage: 6.1 MB, less than 83.25% of C++ online submissions for Score of Parentheses
 //================================================================================================================================================
+
+//(((((())))))        2*2*2*2*2*1
+
 class Solution
 {
-public:
     int scoreOfParentheses(string s)
     {
-        int depth = 0, res = 0;
-        char prev = '(';
-
-        for (const char &ch : s)
+        int dept{0};
+        char prev{'('};
+        int res{0};
+        for (auto x : s)
         {
-            if (ch == '(')
-                depth++;
+            if (x == '(')
+                dept++;
             else
             {
-                depth--;
-                if (prev == '(')
-                    res += pow(2, depth);
+                dept--;
+                res += pow(2, dept);
             }
-
-            prev = ch;
+            prev = x;
         }
-
         return res;
     }
 };
