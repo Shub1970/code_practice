@@ -6,7 +6,7 @@
 #include <sstream>
 using namespace std;
 // leetcodecom/problems/uncommon-words-from-two-sentence/
-
+/*
 class Solution
 {
 public:
@@ -30,7 +30,7 @@ public:
 
         istringstream obs(s2);
         string te;
-        if (obs >> te)
+        while (obs >> te)
         {
             if (mp.count(te.size()))
             {
@@ -61,4 +61,31 @@ int main()
     {
         cout << st;
     }
-}
+} */
+
+// wrong solution
+
+// better solution uncommon words {appear exactly once}
+
+class Solution
+{
+public:
+    vector<string> uncommonFromSentences(string s1, string s2)
+    {
+        istringstream st(s1 + " " + s2);
+        string arr;
+        unordered_map<string, int> mp;
+        vector<string> result;
+        while (st >> arr)
+            mp[arr]++;
+
+        for (auto ref : mp)
+        {
+            if (ref.second == 1)
+            {
+                result.push_back(ref.first);
+            }
+        }
+        return result;
+    }
+};
